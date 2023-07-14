@@ -1,0 +1,106 @@
+<button pButton type="button" label="Click me"></button>
+<div class="card flex flex-wrap gap-3 justify-content-center">
+  <p-button label="Primary" styleClass="p-button-raised"></p-button>
+  <p-button label="Secondary" styleClass="p-button-raised p-button-secondary"></p-button>
+  <p-button label="Success" styleClass="p-button-raised p-button-success"></p-button>
+  <p-button label="Info" styleClass="p-button-raised p-button-info"></p-button>
+  <p-button label="Warning" styleClass="p-button-raised p-button-warning"></p-button>
+  <p-button label="Help" styleClass="p-button-raised p-button-help"></p-button>
+  <p-button label="Danger" styleClass="p-button-raised p-button-danger"></p-button>
+</div>
+<!-- <p-table [value]="products">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Product Name</th>
+      <th>Price</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+    </tr>
+  </ng-template>
+</p-table> -->
+<div class="card">
+  <div class="flex justify-content-center mb-3">
+      <p-selectButton [options]="sizes" [(ngModel)]="selectedSize" [multiple]="false" optionLabel="name" optionValue="class"></p-selectButton>
+  </div>
+
+</div>
+<p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }" [styleClass]="selectedSize.class">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{ product.code }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.quantity }}</td>
+      </tr>
+  </ng-template>
+</p-table>
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input type="text" pInputText [(ngModel)]="value" />
+</span>
+ 
+<span class="p-input-icon-right">
+  <i class="pi pi-spin pi-spinner"></i>
+  <input type="text" pInputText [(ngModel)]="value2" />
+</span>
+<div class="card flex flex-column md:flex-row gap-3">
+  <div class="p-inputgroup">
+      <span class="p-inputgroup-addon"><p-checkbox [(ngModel)]="checkbox1" ></p-checkbox></span>
+      <input type="text" pInputText placeholder="Username" />
+  </div>
+
+  <div class="p-inputgroup">
+      <input type="text" pInputText placeholder="Price" />
+      <span class="p-inputgroup-addon"><p-radioButton name="category" value="price" [(ngModel)]="category"></p-radioButton></span>
+  </div>
+
+  <div class="p-inputgroup">
+      <span class="p-inputgroup-addon"><p-checkbox [(ngModel)]="checkbox2" ></p-checkbox></span>
+      <input type="text" pInputText placeholder="Website" />
+      <span class="p-inputgroup-addon"><p-radioButton name="category" value="site" [(ngModel)]="category"></p-radioButton></span>
+  </div>
+</div>
+<div class="card flex justify-content-center">
+  <p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"></p-multiSelect>
+</div>
+<div class="card flex justify-content-center">
+  <div class="flex flex-column gap-2">
+      <div *ngFor="let category of categories" class="field-checkbox">
+          <p-checkbox name="group" [value]="category" [(ngModel)]="selectedCategories" [inputId]="category.key"></p-checkbox>
+          <label [for]="category.key">{{ category.name }}</label>
+      </div>
+  </div>
+</div>
+<div class="card flex justify-content-center">
+  <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
+</div>
+<div class="card flex flex-wrap flex-column align-items-center gap-2">
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{ width: '50vw' }" key="positionDialog" [position]="position" rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
+  <div class="flex flex-wrap justify-content-center gap-2">
+      <p-button (click)="confirmPosition('left')" icon="pi pi-arrow-right" label="Left" styleClass="p-button-help"></p-button>
+      <p-button (click)="confirmPosition('right')" icon="pi pi-arrow-left" label="Right" styleClass="p-button-help"></p-button>
+  </div>
+  <div class="flex flex-wrap justify-content-center gap-2">
+      <p-button (click)="confirmPosition('top-left')" icon="pi pi-arrow-down" label="TopLeft" styleClass="p-button-warning"></p-button>
+      <p-button (click)="confirmPosition('top')" icon="pi pi-arrow-down" label="Top" styleClass="p-button-warning"></p-button>
+      <p-button (click)="confirmPosition('top-right')" icon="pi pi-arrow-down" label="TopRight" styleClass="p-button-warning"></p-button>
+  </div>
+  <div class="flex flex-wrap justify-content-center gap-2">
+      <p-button (click)="confirmPosition('bottom-left')" icon="pi pi-arrow-up" label="BottomLeft" styleClass="p-button-success"></p-button>
+      <p-button (click)="confirmPosition('bottom')" icon="pi pi-arrow-up" label="Bottom" styleClass="p-button-success"></p-button>
+      <p-button (click)="confirmPosition('bottom-right')" icon="pi pi-arrow-up" label="BottomRight" styleClass="p-button-success"></p-button>
+  </div>
+</div>
